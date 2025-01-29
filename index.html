@@ -3,144 +3,184 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CyberModeler | 3D Portfolio</title>
-    <meta name="description" content="Professional portfolio of a 3D game artist specializing in character and environment design">
-    
-    <!-- Performance Optimizations -->
-    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" crossorigin="anonymous">
+    <title>CyberModeler | 3D Artist Portfolio</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        /* Critical CSS (Above-the-fold styles) */
+        /* ===== Base Styles ===== */
         :root {
-            --primary-color: #7f00ff;
-            --bg-color: #0a0a0a;
-            --text-color: #fff;
-        }
-
-        /* Dark/Light Mode Variables */
-        [data-theme="light"] {
-            --bg-color: #f5f5f5;
-            --text-color: #0a0a0a;
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            transition: background-color 0.3s;
+            --neon-purple: #7f00ff;
+            --cyber-black: #0a0a0a;
+            --hologlow: linear-gradient(45deg, #7f00ff, #ff00ff);
         }
 
         body {
-            background-color: var(--bg-color);
-            color: var(--text-color);
-            font-family: 'Segoe UI', sans-serif;
+            background: var(--cyber-black);
+            color: #fff;
+            font-family: 'Oxanium', cursive;
             overflow-x: hidden;
+        }
+
+        /* ===== Cyberpunk Loader ===== */
+        .cyber-loader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--cyber-black);
+            z-index: 9999;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            animation: fadeOut 1s 2s forwards;
+        }
+
+        /* ===== Neon Header Effect ===== */
+        .cyber-header {
+            text-transform: uppercase;
+            position: relative;
+            font-size: 4rem;
+            text-shadow: 0 0 10px var(--neon-purple),
+                         0 0 20px var(--neon-purple),
+                         0 0 30px var(--neon-purple);
+            animation: glitch 2s infinite;
+        }
+
+        /* ===== Holographic Cards ===== */
+        .project-card {
+            position: relative;
+            background: rgba(15, 15, 15, 0.9);
+            border: 2px solid transparent;
+            border-image: var(--hologlow);
+            border-image-slice: 1;
+            transform-style: preserve-3d;
+            transition: 0.5s;
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px) rotateX(5deg);
+        }
+
+        /* ===== Cyber Button ===== */
+        .cyber-btn {
+            background: none;
+            border: 2px solid var(--neon-purple);
+            padding: 15px 40px;
+            color: white;
+            position: relative;
+            overflow: hidden;
+            transition: 0.3s;
+        }
+
+        .cyber-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(
+                90deg,
+                transparent,
+                rgba(127, 0, 255, 0.4),
+                transparent
+            );
+            transition: 0.5s;
+        }
+
+        /* ===== Animations ===== */
+        @keyframes glitch {
+            0% { transform: translate(0) }
+            20% { transform: translate(-2px, 2px) }
+            40% { transform: translate(-2px, -2px) }
+            60% { transform: translate(2px, 2px) }
+            80% { transform: translate(2px, -2px) }
+            100% { transform: translate(0) }
+        }
+
+        @keyframes scanline {
+            0% { transform: translateY(-100%) }
+            100% { transform: translateY(100%) }
         }
     </style>
 </head>
 <body>
-    <div id="particles-js"></div>
-    
-    <!-- Navbar -->
-    <nav class="navbar">
-        <h1 class="neon-text">CYBERMODELER</h1>
+    <!-- Cyber Loader -->
+    <div class="cyber-loader">
+        <div class="cyber-header">INITIALIZING PORTFOLIO...</div>
+    </div>
+
+    <!-- Holographic Navigation -->
+    <nav class="cyber-nav">
+        <div class="cyber-header">CYBERMODELER</div>
         <div class="nav-links">
-            <a href="#home">Home</a>
-            <a href="#projects">Projects</a>
-            <a href="#blog">Blog</a>
-            <a href="#contact">Contact</a>
-            <button id="theme-toggle" class="cyber-button-small"><i class="fas fa-moon"></i></button>
+            <a href="#home" class="cyber-link">// HOME</a>
+            <a href="#projects" class="cyber-link">// PROJECTS</a>
+            <a href="#blog" class="cyber-link">// BLOG</a>
+            <a href="#contact" class="cyber-link">// CONTACT</a>
         </div>
     </nav>
 
     <!-- Hero Section -->
-    <section class="hero" id="home">
+    <section class="cyber-hero" id="home">
+        <div class="cyber-overlay"></div>
         <div class="hero-content">
-            <h1 class="neon-text">3D ARTISTRY<br>MEETS FUTURE</h1>
-            <p>Creating immersive 3D worlds and characters for next-gen gaming experiences</p>
-            <button class="cyber-button">Explore Works</button>
+            <h1 class="cyber-header">3D ARTISTRY<br>MEETS FUTURE</h1>
+            <p class="cyber-subheader">CREATING IMMERSIVE WORLDS FOR NEXT-GEN GAMING</p>
+            <button class="cyber-btn">EXPLORE WORKS</button>
         </div>
     </section>
 
-    <!-- Projects Section -->
-    <section class="projects" id="projects">
-        <h2>Featured Projects</h2>
+    <!-- Projects Grid -->
+    <section class="cyber-projects" id="projects">
+        <h2 class="section-header">// FEATURED PROJECTS</h2>
         <div class="project-grid">
-            <!-- Add your optimized WebP images -->
             <div class="project-card">
-                <img loading="lazy" src="project1.webp" alt="Cyber Character Design">
+                <div class="project-label">CYBER CHARACTER DESIGN</div>
+                <div class="project-hover">VIEW PROJECT</div>
             </div>
             <div class="project-card">
-                <img loading="lazy" src="project2.webp" alt="Environment Modeling">
+                <div class="project-label">ENVIRONMENT MODELING</div>
+                <div class="project-hover">VIEW PROJECT</div>
             </div>
         </div>
     </section>
 
     <!-- Blog Section -->
-    <section class="blog" id="blog">
-        <h2>Latest Posts</h2>
-        <div class="blog-posts">
-            <article class="blog-post">
-                <h3>Creating Next-Gen Game Assets</h3>
-                <p class="post-date">March 15, 2023</p>
-                <p>Learn my workflow for high-poly modeling...</p>
-                <a href="#" class="read-more">Read More</a>
-            </article>
-            <!-- Add more posts -->
-        </div>
+    <section class="cyber-blog" id="blog">
+        <h2 class="section-header">// LATEST POSTS</h2>
+        <article class="blog-post">
+            <h3 class="post-title">CREATING NEXT-GEN GAME ASSETS</h3>
+            <div class="post-date">2023.08.01</div>
+            <p class="post-excerpt">Master the workflow for high-poly modeling...</p>
+            <button class="cyber-btn">READ MORE</button>
+        </article>
     </section>
 
     <!-- Contact Section -->
-    <section class="contact" id="contact">
-        <h2>Get in Touch</h2>
-        <form action="https://formspree.io/f/your-form-id" method="POST">
-            <input type="text" name="name" placeholder="Name" required>
-            <input type="email" name="_replyto" placeholder="Email" required>
-            <textarea name="message" placeholder="Project Details" required></textarea>
-            <button type="submit" class="cyber-button">Send Message</button>
+    <section class="cyber-contact" id="contact">
+        <h2 class="section-header">// GET IN TOUCH</h2>
+        <form class="cyber-form">
+            <input type="text" placeholder="NAME" class="cyber-input">
+            <input type="email" placeholder="EMAIL" class="cyber-input">
+            <textarea placeholder="PROJECT DETAILS" class="cyber-input"></textarea>
+            <button type="submit" class="cyber-btn">SEND MESSAGE</button>
         </form>
-        
-        <!-- Social Links -->
-        <div class="social-links">
-            <a href="#" aria-label="ArtStation"><i class="fab fa-artstation"></i></a>
-            <a href="#" aria-label="Sketchfab"><i class="fas fa-cube"></i></a>
-            <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
-        </div>
     </section>
 
-    <!-- Non-critical CSS -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" media="print" onload="this.media='all'">
-    
-    <!-- Scripts -->
-    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
     <script>
-        // Theme Toggle
-        const themeToggle = document.getElementById('theme-toggle');
-        themeToggle.addEventListener('click', () => {
-            document.body.dataset.theme = 
-                document.body.dataset.theme === 'light' ? 'dark' : 'light';
-            themeToggle.innerHTML = document.body.dataset.theme === 'light' 
-                ? '<i class="fas fa-moon"></i>' 
-                : '<i class="fas fa-sun"></i>';
-        });
-
-        // Formspree Success Handling
-        window.onload = () => {
-            const params = new URLSearchParams(window.location.search);
-            if(params.has('success')) {
-                alert('Message sent successfully!');
-            }
-        }
-
-        // Lazy Load Images
-        if('loading' in HTMLImageElement.prototype) {
-            const images = document.querySelectorAll('img[loading="lazy"]');
-            images.forEach(img => {
-                img.src = img.dataset.src;
+        // Add cyber effects
+        document.querySelectorAll('.cyber-btn').forEach(btn => {
+            btn.addEventListener('mouseenter', () => {
+                btn.style.transform = 'skew(-15deg)';
+                btn.style.boxShadow = `0 0 30px ${var(--neon-purple)}`;
             });
-        }
-
-        // Add other scripts from previous version
+            
+            btn.addEventListener('mouseleave', () => {
+                btn.style.transform = 'skew(0)';
+                btn.style.boxShadow = 'none';
+            });
+        });
     </script>
 </body>
 </html>
