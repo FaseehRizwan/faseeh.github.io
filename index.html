@@ -3,24 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CyberModeler | 3D Artist Portfolio</title>
+    <title>CyberModeler Portfolio</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        /* ===== Base Styles ===== */
+        /* ===== CRITICAL CSS ===== */
         :root {
             --neon-purple: #7f00ff;
             --cyber-black: #0a0a0a;
-            --hologlow: linear-gradient(45deg, #7f00ff, #ff00ff);
         }
 
-        body {
-            background: var(--cyber-black);
-            color: #fff;
-            font-family: 'Oxanium', cursive;
-            overflow-x: hidden;
-        }
-
-        /* ===== Cyberpunk Loader ===== */
         .cyber-loader {
             position: fixed;
             top: 0;
@@ -28,157 +19,166 @@
             width: 100%;
             height: 100%;
             background: var(--cyber-black);
-            z-index: 9999;
+            color: var(--neon-purple);
             display: flex;
             justify-content: center;
             align-items: center;
+            z-index: 9999;
             animation: fadeOut 1s 2s forwards;
+            font-family: 'Courier New', monospace;
         }
 
-        /* ===== Neon Header Effect ===== */
-        .cyber-header {
-            text-transform: uppercase;
+        @keyframes fadeOut {
+            0% { opacity: 1; }
+            100% { opacity: 0; visibility: hidden; }
+        }
+
+        body {
+            margin: 0;
+            background: var(--cyber-black);
+            color: white;
+            font-family: 'Oxanium', cursive;
+        }
+
+        .content {
+            opacity: 0;
+            animation: contentFadeIn 1s 2.5s forwards;
+        }
+
+        @keyframes contentFadeIn {
+            0% { opacity: 0; }
+            100% { opacity: 1; }
+        }
+
+        /* ===== MAIN STYLES ===== */
+        .cyber-nav {
+            padding: 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px solid var(--neon-purple);
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            margin: 0 1.5rem;
             position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background: var(--neon-purple);
+            transition: width 0.3s;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .hero-section {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .cyber-title {
             font-size: 4rem;
-            text-shadow: 0 0 10px var(--neon-purple),
-                         0 0 20px var(--neon-purple),
-                         0 0 30px var(--neon-purple);
-            animation: glitch 2s infinite;
+            text-shadow: 0 0 15px var(--neon-purple);
+            margin-bottom: 2rem;
         }
 
-        /* ===== Holographic Cards ===== */
+        .project-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            padding: 2rem;
+        }
+
         .project-card {
-            position: relative;
-            background: rgba(15, 15, 15, 0.9);
-            border: 2px solid transparent;
-            border-image: var(--hologlow);
-            border-image-slice: 1;
-            transform-style: preserve-3d;
-            transition: 0.5s;
+            border: 2px solid var(--neon-purple);
+            padding: 1rem;
+            transition: transform 0.3s;
         }
 
         .project-card:hover {
-            transform: translateY(-10px) rotateX(5deg);
-        }
-
-        /* ===== Cyber Button ===== */
-        .cyber-btn {
-            background: none;
-            border: 2px solid var(--neon-purple);
-            padding: 15px 40px;
-            color: white;
-            position: relative;
-            overflow: hidden;
-            transition: 0.3s;
-        }
-
-        .cyber-btn::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(
-                90deg,
-                transparent,
-                rgba(127, 0, 255, 0.4),
-                transparent
-            );
-            transition: 0.5s;
-        }
-
-        /* ===== Animations ===== */
-        @keyframes glitch {
-            0% { transform: translate(0) }
-            20% { transform: translate(-2px, 2px) }
-            40% { transform: translate(-2px, -2px) }
-            60% { transform: translate(2px, 2px) }
-            80% { transform: translate(2px, -2px) }
-            100% { transform: translate(0) }
-        }
-
-        @keyframes scanline {
-            0% { transform: translateY(-100%) }
-            100% { transform: translateY(100%) }
+            transform: translateY(-10px);
         }
     </style>
 </head>
 <body>
-    <!-- Cyber Loader -->
+    <!-- Loader -->
     <div class="cyber-loader">
-        <div class="cyber-header">INITIALIZING PORTFOLIO...</div>
+        <h1>INITIALIZING SYSTEM...</h1>
     </div>
 
-    <!-- Holographic Navigation -->
-    <nav class="cyber-nav">
-        <div class="cyber-header">CYBERMODELER</div>
-        <div class="nav-links">
-            <a href="#home" class="cyber-link">// HOME</a>
-            <a href="#projects" class="cyber-link">// PROJECTS</a>
-            <a href="#blog" class="cyber-link">// BLOG</a>
-            <a href="#contact" class="cyber-link">// CONTACT</a>
-        </div>
-    </nav>
-
-    <!-- Hero Section -->
-    <section class="cyber-hero" id="home">
-        <div class="cyber-overlay"></div>
-        <div class="hero-content">
-            <h1 class="cyber-header">3D ARTISTRY<br>MEETS FUTURE</h1>
-            <p class="cyber-subheader">CREATING IMMERSIVE WORLDS FOR NEXT-GEN GAMING</p>
-            <button class="cyber-btn">EXPLORE WORKS</button>
-        </div>
-    </section>
-
-    <!-- Projects Grid -->
-    <section class="cyber-projects" id="projects">
-        <h2 class="section-header">// FEATURED PROJECTS</h2>
-        <div class="project-grid">
-            <div class="project-card">
-                <div class="project-label">CYBER CHARACTER DESIGN</div>
-                <div class="project-hover">VIEW PROJECT</div>
+    <!-- Content -->
+    <div class="content">
+        <nav class="cyber-nav">
+            <h1>CYBERMODELER</h1>
+            <div class="nav-links">
+                <a href="#home">HOME</a>
+                <a href="#projects">PROJECTS</a>
+                <a href="#contact">CONTACT</a>
             </div>
-            <div class="project-card">
-                <div class="project-label">ENVIRONMENT MODELING</div>
-                <div class="project-hover">VIEW PROJECT</div>
+        </nav>
+
+        <section class="hero-section" id="home">
+            <div>
+                <h1 class="cyber-title">3D MODELING MASTER</h1>
+                <p>Creating next-generation game assets and environments</p>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Blog Section -->
-    <section class="cyber-blog" id="blog">
-        <h2 class="section-header">// LATEST POSTS</h2>
-        <article class="blog-post">
-            <h3 class="post-title">CREATING NEXT-GEN GAME ASSETS</h3>
-            <div class="post-date">2023.08.01</div>
-            <p class="post-excerpt">Master the workflow for high-poly modeling...</p>
-            <button class="cyber-btn">READ MORE</button>
-        </article>
-    </section>
+        <section id="projects">
+            <h2 class="cyber-title">PROJECTS</h2>
+            <div class="project-grid">
+                <div class="project-card">
+                    <h3>Cyber Character</h3>
+                    <p>High-poly game character design</p>
+                </div>
+                <div class="project-card">
+                    <h3>Environment Art</h3>
+                    <p>Post-apocalyptic cityscape</p>
+                </div>
+            </div>
+        </section>
 
-    <!-- Contact Section -->
-    <section class="cyber-contact" id="contact">
-        <h2 class="section-header">// GET IN TOUCH</h2>
-        <form class="cyber-form">
-            <input type="text" placeholder="NAME" class="cyber-input">
-            <input type="email" placeholder="EMAIL" class="cyber-input">
-            <textarea placeholder="PROJECT DETAILS" class="cyber-input"></textarea>
-            <button type="submit" class="cyber-btn">SEND MESSAGE</button>
-        </form>
-    </section>
+        <section id="contact" style="padding: 4rem 2rem;">
+            <h2 class="cyber-title">CONTACT</h2>
+            <form style="max-width: 500px; margin: 0 auto;">
+                <input type="text" placeholder="Name" style="width: 100%; padding: 1rem; margin: 1rem 0; background: #111; border: 1px solid var(--neon-purple); color: white;">
+                <input type="email" placeholder="Email" style="width: 100%; padding: 1rem; margin: 1rem 0; background: #111; border: 1px solid var(--neon-purple); color: white;">
+                <textarea placeholder="Message" style="width: 100%; padding: 1rem; margin: 1rem 0; background: #111; border: 1px solid var(--neon-purple); color: white; height: 150px;"></textarea>
+                <button style="background: var(--neon-purple); color: white; padding: 1rem 2rem; border: none; cursor: pointer; transition: opacity 0.3s;">SEND MESSAGE</button>
+            </form>
+        </section>
+    </div>
 
     <script>
-        // Add cyber effects
-        document.querySelectorAll('.cyber-btn').forEach(btn => {
-            btn.addEventListener('mouseenter', () => {
-                btn.style.transform = 'skew(-15deg)';
-                btn.style.boxShadow = `0 0 30px ${var(--neon-purple)}`;
-            });
-            
-            btn.addEventListener('mouseleave', () => {
-                btn.style.transform = 'skew(0)';
-                btn.style.boxShadow = 'none';
+        // Loader Removal Insurance
+        window.addEventListener('load', () => {
+            const loader = document.querySelector('.cyber-loader');
+            setTimeout(() => {
+                loader.style.display = 'none';
+            }, 3000);
+        });
+
+        // Smooth Scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
             });
         });
     </script>
